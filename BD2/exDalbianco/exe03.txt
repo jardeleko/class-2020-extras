@@ -1,0 +1,10 @@
+// exemple var RECORD 
+
+CREATE or replace FUNCTION merge_fields() RETURNS text AS $$
+DECLARE 
+    r record;
+BEGIN
+    SELECT * INTO r FROM dados where id = 1;
+    RETURN r.name;
+END;
+$$ LANGUAGE 'plpgsql';

@@ -1,0 +1,10 @@
+//exemple params 2
+
+CREATE FUNCTION atualizarCurriculo2(varchar, int) RETURNS boolean AS $$
+BEGIN 
+    UPDATE aluno SET curriculo = $1 WHERE num_matricula = $2;
+
+    RETURN FOUND;
+END;
+
+$$ LANGUAGE 'plpgsql';

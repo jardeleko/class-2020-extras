@@ -1,0 +1,8 @@
+//exercicio 2
+
+create function concat(a text, b text) RETURNS text AS $$ 
+SELECT CASE 
+	WHEN $2 THEN UPPER($1 || '')
+	ELSE LOWER($2 || '')
+END;
+ $$ LANGUAGE plpgsql;

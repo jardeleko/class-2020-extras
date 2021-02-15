@@ -1,0 +1,64 @@
+<start T1>
+<write T1,A,10> A=10  transaction T //copia na memoria
+<start T2>
+<write T2,C,45> //copia na memoria
+<write T2,E,17> //copia na memoria
+<commit T2> REDO
+<write T1,C,55> //copia na memoria
+<start T3>
+<write T3,B,20> //copia na memoria
+<commit T1> REDO
+<start T4>
+<write T4,C,65> //copia na memoria
+<checkpoint (T3,T4)> //T3 E T4 nao commitadas ckpt não bloqueante
+<start T5>
+<write T5,D,39> //copia na memoria
+<start T6>
+<write T3,A,25> //copia na memoria
+<write T6,F,2>  //copia na memoria
+<write T3,E,28> //copia na memoria
+<commit T3> REDO
+<start T7>
+<write T7,B,30> //copia na memoria
+<commit T7> REDO
+<write T4,E,34> //copia na memoria
+Crash!
+
+Valor antigo de
+A=25                 || t1commit = A=10 || T3commit A = 25  ||
+B=30                 ||                 || T3commit B = 20  ||  t7commit B = 30 
+C=30 t2commit C = 45 || t1commit = C=55 ||                  ||
+D=30                 ||                 ||                  ||                    
+E=28 t2commit E = 17 ||                 || T3commit E = 28  ||
+F=1                                                                     
+
+
+
+
+1 Quais transações executam o Redo? 
+houve logs em diversas linhas, porém as linhas com Redo foram
+as linhas 6, 10, 20, 23...
+O checkpoint na linha 13 é não bloqueante e garante que todas as log lists
+commitadas até esta linha tenham se atualizado no banco (6, 10),
+entretando o que garante esta propriedade é o end checkpoint.
+
+2 Qual é o valor final nas variáveis?
+<antes CKPT>  <depois CKPT>  
+A = 10         A = 25
+B = 30         B = 30 
+C = 55         C = 55 
+D = 30         D = 30 
+E = 28         E = 17    
+F = 1          F = 1
+
+Sabendo que houve um bug que crashou nosso bd, podemos acreditar 
+que existe a possibilidade de todos os commits antes do travamento serem
+salvos em discos, ou seja o log aconteceu e ao lermos as variaveis novamente
+teriamos os valores da segunda coluna (sem contar que o end checkpoint não aconteceu),
+entretando a primeira coluna que foram os 2 primeiros commits foram salvas sem duvidas.
+podemos justificar assim por termos pooucas transaçoes até o ckpt
+logo essa inserção teria custo minimo e seria feita em tempos de 0 a 500 ms.
+mas não garantiria em um grande numero de inserts ou updates.         
+
+
+

@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION incrementar(i integer) RETURNS integer AS $$
+BEGIN
+   RETURN i + 1;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION
+

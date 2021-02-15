@@ -1,0 +1,22 @@
+A=2 | B=100 | C=45 | D=10 
+
+<start T1>
+<T1,A,412>
+<start T2>
+<T2,B,1>
+<Start CKPT(T2)>
+<T2,C,123>
+<start T3>
+<T3,D,23>
+<Commit T1>
+<END CKPT>
+<Commit T3>
+<start T4>
+<T4, B, 33>
+<T4, A, 21>
+<Start CKPT(T4)>
+<Commit T4>
+<T2, C, 2>
+<T4, D, 78>
+<end CKPT>
+

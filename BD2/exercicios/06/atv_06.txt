@@ -1,0 +1,50 @@
+1- Explique o motivo de uma escrita de um bloco no SSD ser mais lenta que uma leitura.
+
+Por vezes o que explicaria isto é o fato de o SSD ter que fazer anotações em mais de um bloco considerado que ele use a paginação
+de 4 kb e que são agrupados em blocos de 512kb, cada página pode armazenar somente um arquivo.
+já o HD é composto por cilindros estruturados em trilhas, que contém blocos e normalmente os arquivos
+são inseridos como em estrutura de dados (normalmente arvores de dados B+), o que poderia garantir essa afirmação
+de escrita em que o HD é mais rápido.
+
+2- Você acredita que o disco rígido será descontinuado nos próximos anos? Explique.
+
+Sim, existe um grande possibilidade de isto acontecer, ainda que tenhamos muito tempo até que de fato 
+o HD saia de linha(observação: linha usuario final), porém existem muitos sistemas e bancos de dados
+que ainda hoje utilizam muito de discos HD em grande escala, o que garante que estamos
+muito bem servidos de componentes integros nesse atual momento. chuto talvez uns 30 ou 50 anos. 
+
+3- Explique como acontece uma operação de atualização no SSD vs HD.
+Ambos necessitam de controladores, que trabalham como processadores de tarefas, entretanto...
+Conforme Tanenbaum e Filho (1995, p.149), para acessar um determinadodado no HD, 
+é necessário localizar um determinado setor e trilha onde o dado será enfim lido.
+O tempo que esse procedimento implica é chamado de tempo de acesso, que é determinado por três fatores:
+tempo de seek, tempo de latência e tempo de transferência.
+
+Já a atualização do ssd conta com apoio de memórias dedicadas que funcionam como cache e algoritmos
+de compressão de dados que tornam as operações mais rápidas ou prolongam a vida útil da unidade.
+embora essa vida util seja finita, mesmo após a implementação do TRIM nas últimas atualizações de SSD.
+A ausência ou a implementação de determinados recursos nos controladores varia de fabricante
+para fabricante e de um modelo de SSD para outro.
+
+4- Até então vimos na disciplina o sistema transacional, log e concorrência. 
+Qual (ou quais) desses mecanismos é (são) mais impactado(s) com a utilização de um disco de alta velocidade SSD?
+Explique
+
+Suponho que seja o LOG, isto se dá pelas diversas escritas e checkpoints em indeterminados momentos 
+da leitura dos dados. Ou seja, sempre que houver um REDO ou UNDO, teriamos chamadas de acesso no 
+armazenamento.
+
+Referências:
+
+TANENBAUM, A. S.; FILHO, N. M.Sistemas operacionais modernos. [S.l.]:Prentice-Hall, 1995. v. 3.
+
+GABBI, Henrique. Benchmark em Sistemas de Arquivos Utilizando Dispositivos de Armazenamento:SSD e HDD. Ijuí-RS. 2016.
+
+
+
+Professor: Ja justifico que não estarei implementado a B+ por ter no enunciado "inserção em uma B+"
+acredito que seja no mesmo app daquela rota já definida no enunciado.
+ 
+do contrario estaria me baseando neste codigo que me pareceu bem exemplificado. 
+https://stackoverflow.com/questions/5662684/btree-deletion-code?noredirect=1&lq=1
+só teriamos que trocar o define no inicio pelo numero de chaves desejadas, no nosso caso duas.

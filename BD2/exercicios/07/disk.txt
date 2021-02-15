@@ -1,0 +1,33 @@
+Create table teste (varchar[30] x, int y)
+A) Insira 3 registros na tabela acima.
+B) Remova o primeiro dos registros anteriormente inseridos
+C) Insira 1 novo registro. 
+
+
+Command line(postgresql sql)
+
+CREATE TABLE teste(x varchar(30), y integer);
+ 
+A) 
+
+BEGIN; -- inicia transação
+INSERT INTO TESTE VALUES('testdisk1', 1), ('testdisk2', 2), ('testdisk3', 3); --faz a inserção
+SELECT * FROM teste; --verifica antes se todas linhas foram inseridas
+COMMIT; -- REDO GRAVADO EM DISCO
+
+B)
+
+BEGIN; -- inicia transação
+DELETE FROM teste WHERE y = 1; --deleta a tupla do indece 1 inserido no bd
+SELECT * FROM teste; --verifica antes se as linhas foram alteradas
+COMMIT; --REDO GRAVADO EM DISCO
+
+C)
+
+BEGIN; -- inicia transação
+INSERT INTO TESTE VALUES('testdisk4', 4); --insere um novo valor 
+COMMIT; --REDO GRAVADO EM DISCO
+
+--professor Guilherme, não sei ao certo se era isto que deveria fazer
+--mas estou enviando assim por garantia desta presença, vou dar mais uma olhada em disco antes de nossa
+--proxima aula, porém aguardo do feedback para qualquer alteração, abraços

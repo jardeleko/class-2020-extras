@@ -1,2 +1,4 @@
-# class-2020-temporary
-aulas de 2020
+# class
+aulas2020
+
+diretorio disciplinas 2020

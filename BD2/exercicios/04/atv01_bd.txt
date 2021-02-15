@@ -1,0 +1,38 @@
+<start t>; //Segundo as operações abaixo:
+<T,A,10>; 
+<Start U>; 
+<U,B,20>; 
+<T,C,30>; 
+<Commit T>
+<U,D,40>; 
+<U,E,50>; 
+
+Valor antigo de
+A=5
+B=10
+C=20
+D=30
+E=40
+
+
+Se a última operação a ser escrita no log (e no disco) foi uma das seguintes. 
+Quais são as ações do recovery  REDO?
+Ou seja, qual o valor das variáveis após a recuperação REDO. 
+
+A) 3:   A=5
+        B=10
+        C=20
+        D=30
+        E=40 
+
+B) 6:   A=10
+        B=10
+        C=30
+        D=30
+        E=40
+
+C) 8:   A=10
+        B=10
+        C=30
+        D=30
+        E=40 

@@ -1,0 +1,3 @@
+2 ) O que acontece se não for retornado nada junto a função?
+  O trigger interrompe a execução da query e gera warnings em grande parte dos casos, até 
+  existe algumas execuções que o sistema tolera, porém nos inserts, updates ou delete não..

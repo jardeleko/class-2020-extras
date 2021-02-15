@@ -1,0 +1,7 @@
+//exemple var usage 
+CREATE FUNCTION name(argname argtype, ..)
+RETURNS rettype 
+AS $$ 
+... declare...
+
+$$LANGUAGE 'plpgsql';

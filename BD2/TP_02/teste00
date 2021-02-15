@@ -1,0 +1,18 @@
+A=4 | B=12 | C=25 | D=30 | E=40 
+
+<start T1>
+<T1,A,40>
+<start T2>
+<Commit T1>
+<T2,B,10>
+<Start CKPT(T2)>
+<T2,C,15>
+<start T3>
+<T3,D,20>
+<END CKPT>
+<Commit T3>
+<Commit T2>
+<start T4>
+<T4, B, 54>
+<T4, A, 12>
+<Commit T4>
